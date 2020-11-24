@@ -6193,6 +6193,12 @@ type IStorageClassSpecifierContext interface {
 	// GetParser returns the parser.
 	GetParser() antlr.Parser
 
+	// GetId returns the id token.
+	GetId() antlr.Token
+
+	// SetId sets the id token.
+	SetId(antlr.Token)
+
 	// IsStorageClassSpecifierContext differentiates from other interfaces.
 	IsStorageClassSpecifierContext()
 }
@@ -6200,6 +6206,7 @@ type IStorageClassSpecifierContext interface {
 type StorageClassSpecifierContext struct {
 	*antlr.BaseParserRuleContext
 	parser antlr.Parser
+	id     antlr.Token
 }
 
 func NewEmptyStorageClassSpecifierContext() *StorageClassSpecifierContext {
@@ -6223,6 +6230,10 @@ func NewStorageClassSpecifierContext(parser antlr.Parser, parent antlr.ParserRul
 }
 
 func (s *StorageClassSpecifierContext) GetParser() antlr.Parser { return s.parser }
+
+func (s *StorageClassSpecifierContext) GetId() antlr.Token { return s.id }
+
+func (s *StorageClassSpecifierContext) SetId(v antlr.Token) { s.id = v }
 
 func (s *StorageClassSpecifierContext) Typedef() antlr.TerminalNode {
 	return s.GetToken(CParserTypedef, 0)
@@ -6292,10 +6303,17 @@ func (p *CParser) StorageClassSpecifier() (localctx IStorageClassSpecifierContex
 	p.EnterOuterAlt(localctx, 1)
 	{
 		p.SetState(560)
+
+		var _lt = p.GetTokenStream().LT(1)
+
+		localctx.(*StorageClassSpecifierContext).id = _lt
+
 		_la = p.GetTokenStream().LA(1)
 
 		if !(_la == CParserAuto || _la == CParserExtern || (((_la-34)&-(0x1f+1)) == 0 && ((1<<uint((_la-34)))&((1<<(CParserRegister-34))|(1<<(CParserStatic-34))|(1<<(CParserTypedef-34))|(1<<(CParserThreadLocal-34)))) != 0)) {
-			p.GetErrorHandler().RecoverInline(p)
+			var _ri = p.GetErrorHandler().RecoverInline(p)
+
+			localctx.(*StorageClassSpecifierContext).id = _ri
 		} else {
 			p.GetErrorHandler().ReportMatch(p)
 			p.Consume()
@@ -8361,6 +8379,12 @@ type ITypeQualifierContext interface {
 	// GetParser returns the parser.
 	GetParser() antlr.Parser
 
+	// GetId returns the id token.
+	GetId() antlr.Token
+
+	// SetId sets the id token.
+	SetId(antlr.Token)
+
 	// IsTypeQualifierContext differentiates from other interfaces.
 	IsTypeQualifierContext()
 }
@@ -8368,6 +8392,7 @@ type ITypeQualifierContext interface {
 type TypeQualifierContext struct {
 	*antlr.BaseParserRuleContext
 	parser antlr.Parser
+	id     antlr.Token
 }
 
 func NewEmptyTypeQualifierContext() *TypeQualifierContext {
@@ -8391,6 +8416,10 @@ func NewTypeQualifierContext(parser antlr.Parser, parent antlr.ParserRuleContext
 }
 
 func (s *TypeQualifierContext) GetParser() antlr.Parser { return s.parser }
+
+func (s *TypeQualifierContext) GetId() antlr.Token { return s.id }
+
+func (s *TypeQualifierContext) SetId(v antlr.Token) { s.id = v }
 
 func (s *TypeQualifierContext) Const() antlr.TerminalNode {
 	return s.GetToken(CParserConst, 0)
@@ -8452,10 +8481,17 @@ func (p *CParser) TypeQualifier() (localctx ITypeQualifierContext) {
 	p.EnterOuterAlt(localctx, 1)
 	{
 		p.SetState(695)
+
+		var _lt = p.GetTokenStream().LT(1)
+
+		localctx.(*TypeQualifierContext).id = _lt
+
 		_la = p.GetTokenStream().LA(1)
 
 		if !(_la == CParserConst || (((_la-35)&-(0x1f+1)) == 0 && ((1<<uint((_la-35)))&((1<<(CParserRestrict-35))|(1<<(CParserVolatile-35))|(1<<(CParserAtomic-35)))) != 0)) {
-			p.GetErrorHandler().RecoverInline(p)
+			var _ri = p.GetErrorHandler().RecoverInline(p)
+
+			localctx.(*TypeQualifierContext).id = _ri
 		} else {
 			p.GetErrorHandler().ReportMatch(p)
 			p.Consume()
@@ -13655,6 +13691,2721 @@ func (s *BlockItemListContext) GetRuleContext() antlr.RuleContext {
 
 func (s *BlockItemListContext) ToStringTree(ruleNames []string, recog antlr.Recognizer) string {
 	return antlr.TreesStringTree(s, ruleNames, recog)
+}
+
+func (s *BlockItemListContext) EnterRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(CListener); ok {
+		listenerT.EnterBlockItemList(s)
+	}
+}
+
+func (s *BlockItemListContext) ExitRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(CListener); ok {
+		listenerT.ExitBlockItemList(s)
+	}
+}
+
+func (p *CParser) BlockItemList() (localctx IBlockItemListContext) {
+	return p.blockItemList(0)
+}
+
+func (p *CParser) blockItemList(_p int) (localctx IBlockItemListContext) {
+	var _parentctx antlr.ParserRuleContext = p.GetParserRuleContext()
+	_parentState := p.GetState()
+	localctx = NewBlockItemListContext(p, p.GetParserRuleContext(), _parentState)
+	var _prevctx IBlockItemListContext = localctx
+	var _ antlr.ParserRuleContext = _prevctx // TODO: To prevent unused variable warning.
+	_startState := 146
+	p.EnterRecursionRule(localctx, 146, CParserRULE_blockItemList, _p)
+
+	defer func() {
+		p.UnrollRecursionContexts(_parentctx)
+	}()
+
+	defer func() {
+		if err := recover(); err != nil {
+			if v, ok := err.(antlr.RecognitionException); ok {
+				localctx.SetException(v)
+				p.GetErrorHandler().ReportError(p, v)
+				p.GetErrorHandler().Recover(p, v)
+			} else {
+				panic(err)
+			}
+		}
+	}()
+
+	var _alt int
+
+	p.EnterOuterAlt(localctx, 1)
+	{
+		p.SetState(1146)
+		p.BlockItem()
+	}
+
+	p.GetParserRuleContext().SetStop(p.GetTokenStream().LT(-1))
+	p.SetState(1152)
+	p.GetErrorHandler().Sync(p)
+	_alt = p.GetInterpreter().AdaptivePredict(p.GetTokenStream(), 120, p.GetParserRuleContext())
+
+	for _alt != 2 && _alt != antlr.ATNInvalidAltNumber {
+		if _alt == 1 {
+			if p.GetParseListeners() != nil {
+				p.TriggerExitRuleEvent()
+			}
+			_prevctx = localctx
+			localctx = NewBlockItemListContext(p, _parentctx, _parentState)
+			p.PushNewRecursionContext(localctx, _startState, CParserRULE_blockItemList)
+			p.SetState(1148)
+
+			if !(p.Precpred(p.GetParserRuleContext(), 1)) {
+				panic(antlr.NewFailedPredicateException(p, "p.Precpred(p.GetParserRuleContext(), 1)", ""))
+			}
+			{
+				p.SetState(1149)
+				p.BlockItem()
+			}
+
+		}
+		p.SetState(1154)
+		p.GetErrorHandler().Sync(p)
+		_alt = p.GetInterpreter().AdaptivePredict(p.GetTokenStream(), 120, p.GetParserRuleContext())
+	}
+
+	return localctx
+}
+
+// IBlockItemContext is an interface to support dynamic dispatch.
+type IBlockItemContext interface {
+	antlr.ParserRuleContext
+
+	// GetParser returns the parser.
+	GetParser() antlr.Parser
+
+	// IsBlockItemContext differentiates from other interfaces.
+	IsBlockItemContext()
+}
+
+type BlockItemContext struct {
+	*antlr.BaseParserRuleContext
+	parser antlr.Parser
+}
+
+func NewEmptyBlockItemContext() *BlockItemContext {
+	var p = new(BlockItemContext)
+	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(nil, -1)
+	p.RuleIndex = CParserRULE_blockItem
+	return p
+}
+
+func (*BlockItemContext) IsBlockItemContext() {}
+
+func NewBlockItemContext(parser antlr.Parser, parent antlr.ParserRuleContext, invokingState int) *BlockItemContext {
+	var p = new(BlockItemContext)
+
+	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(parent, invokingState)
+
+	p.parser = parser
+	p.RuleIndex = CParserRULE_blockItem
+
+	return p
+}
+
+func (s *BlockItemContext) GetParser() antlr.Parser { return s.parser }
+
+func (s *BlockItemContext) Statement() IStatementContext {
+	var t = s.GetTypedRuleContext(reflect.TypeOf((*IStatementContext)(nil)).Elem(), 0)
+
+	if t == nil {
+		return nil
+	}
+
+	return t.(IStatementContext)
+}
+
+func (s *BlockItemContext) Declaration() IDeclarationContext {
+	var t = s.GetTypedRuleContext(reflect.TypeOf((*IDeclarationContext)(nil)).Elem(), 0)
+
+	if t == nil {
+		return nil
+	}
+
+	return t.(IDeclarationContext)
+}
+
+func (s *BlockItemContext) GetRuleContext() antlr.RuleContext {
+	return s
+}
+
+func (s *BlockItemContext) ToStringTree(ruleNames []string, recog antlr.Recognizer) string {
+	return antlr.TreesStringTree(s, ruleNames, recog)
+}
+
+func (s *BlockItemContext) EnterRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(CListener); ok {
+		listenerT.EnterBlockItem(s)
+	}
+}
+
+func (s *BlockItemContext) ExitRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(CListener); ok {
+		listenerT.ExitBlockItem(s)
+	}
+}
+
+func (p *CParser) BlockItem() (localctx IBlockItemContext) {
+	localctx = NewBlockItemContext(p, p.GetParserRuleContext(), p.GetState())
+	p.EnterRule(localctx, 148, CParserRULE_blockItem)
+
+	defer func() {
+		p.ExitRule()
+	}()
+
+	defer func() {
+		if err := recover(); err != nil {
+			if v, ok := err.(antlr.RecognitionException); ok {
+				localctx.SetException(v)
+				p.GetErrorHandler().ReportError(p, v)
+				p.GetErrorHandler().Recover(p, v)
+			} else {
+				panic(err)
+			}
+		}
+	}()
+
+	p.SetState(1157)
+	p.GetErrorHandler().Sync(p)
+	switch p.GetInterpreter().AdaptivePredict(p.GetTokenStream(), 121, p.GetParserRuleContext()) {
+	case 1:
+		p.EnterOuterAlt(localctx, 1)
+		{
+			p.SetState(1155)
+			p.Statement()
+		}
+
+	case 2:
+		p.EnterOuterAlt(localctx, 2)
+		{
+			p.SetState(1156)
+			p.Declaration()
+		}
+
+	}
+
+	return localctx
+}
+
+// IExpressionStatementContext is an interface to support dynamic dispatch.
+type IExpressionStatementContext interface {
+	antlr.ParserRuleContext
+
+	// GetParser returns the parser.
+	GetParser() antlr.Parser
+
+	// IsExpressionStatementContext differentiates from other interfaces.
+	IsExpressionStatementContext()
+}
+
+type ExpressionStatementContext struct {
+	*antlr.BaseParserRuleContext
+	parser antlr.Parser
+}
+
+func NewEmptyExpressionStatementContext() *ExpressionStatementContext {
+	var p = new(ExpressionStatementContext)
+	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(nil, -1)
+	p.RuleIndex = CParserRULE_expressionStatement
+	return p
+}
+
+func (*ExpressionStatementContext) IsExpressionStatementContext() {}
+
+func NewExpressionStatementContext(parser antlr.Parser, parent antlr.ParserRuleContext, invokingState int) *ExpressionStatementContext {
+	var p = new(ExpressionStatementContext)
+
+	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(parent, invokingState)
+
+	p.parser = parser
+	p.RuleIndex = CParserRULE_expressionStatement
+
+	return p
+}
+
+func (s *ExpressionStatementContext) GetParser() antlr.Parser { return s.parser }
+
+func (s *ExpressionStatementContext) Semi() antlr.TerminalNode {
+	return s.GetToken(CParserSemi, 0)
+}
+
+func (s *ExpressionStatementContext) Expression() IExpressionContext {
+	var t = s.GetTypedRuleContext(reflect.TypeOf((*IExpressionContext)(nil)).Elem(), 0)
+
+	if t == nil {
+		return nil
+	}
+
+	return t.(IExpressionContext)
+}
+
+func (s *ExpressionStatementContext) GetRuleContext() antlr.RuleContext {
+	return s
+}
+
+func (s *ExpressionStatementContext) ToStringTree(ruleNames []string, recog antlr.Recognizer) string {
+	return antlr.TreesStringTree(s, ruleNames, recog)
+}
+
+func (s *ExpressionStatementContext) EnterRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(CListener); ok {
+		listenerT.EnterExpressionStatement(s)
+	}
+}
+
+func (s *ExpressionStatementContext) ExitRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(CListener); ok {
+		listenerT.ExitExpressionStatement(s)
+	}
+}
+
+func (p *CParser) ExpressionStatement() (localctx IExpressionStatementContext) {
+	localctx = NewExpressionStatementContext(p, p.GetParserRuleContext(), p.GetState())
+	p.EnterRule(localctx, 150, CParserRULE_expressionStatement)
+	var _la int
+
+	defer func() {
+		p.ExitRule()
+	}()
+
+	defer func() {
+		if err := recover(); err != nil {
+			if v, ok := err.(antlr.RecognitionException); ok {
+				localctx.SetException(v)
+				p.GetErrorHandler().ReportError(p, v)
+				p.GetErrorHandler().Recover(p, v)
+			} else {
+				panic(err)
+			}
+		}
+	}()
+
+	p.EnterOuterAlt(localctx, 1)
+	p.SetState(1160)
+	p.GetErrorHandler().Sync(p)
+	_la = p.GetTokenStream().LA(1)
+
+	if (((_la)&-(0x1f+1)) == 0 && ((1<<uint(_la))&((1<<CParserT__0)|(1<<CParserT__1)|(1<<CParserT__2))) != 0) || (((_la-39)&-(0x1f+1)) == 0 && ((1<<uint((_la-39)))&((1<<(CParserSizeof-39))|(1<<(CParserAlignof-39))|(1<<(CParserGeneric-39))|(1<<(CParserLeftParen-39)))) != 0) || (((_la-71)&-(0x1f+1)) == 0 && ((1<<uint((_la-71)))&((1<<(CParserPlus-71))|(1<<(CParserPlusPlus-71))|(1<<(CParserMinus-71))|(1<<(CParserMinusMinus-71))|(1<<(CParserStar-71))|(1<<(CParserAnd-71))|(1<<(CParserAndAnd-71))|(1<<(CParserNot-71))|(1<<(CParserTilde-71)))) != 0) || (((_la-105)&-(0x1f+1)) == 0 && ((1<<uint((_la-105)))&((1<<(CParserIdentifier-105))|(1<<(CParserConstant-105))|(1<<(CParserDigitSequence-105))|(1<<(CParserStringLiteral-105)))) != 0) {
+		{
+			p.SetState(1159)
+			p.expression(0)
+		}
+
+	}
+	{
+		p.SetState(1162)
+		p.Match(CParserSemi)
+	}
+
+	return localctx
+}
+
+// ISelectionStatementContext is an interface to support dynamic dispatch.
+type ISelectionStatementContext interface {
+	antlr.ParserRuleContext
+
+	// GetParser returns the parser.
+	GetParser() antlr.Parser
+
+	// IsSelectionStatementContext differentiates from other interfaces.
+	IsSelectionStatementContext()
+}
+
+type SelectionStatementContext struct {
+	*antlr.BaseParserRuleContext
+	parser antlr.Parser
+}
+
+func NewEmptySelectionStatementContext() *SelectionStatementContext {
+	var p = new(SelectionStatementContext)
+	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(nil, -1)
+	p.RuleIndex = CParserRULE_selectionStatement
+	return p
+}
+
+func (*SelectionStatementContext) IsSelectionStatementContext() {}
+
+func NewSelectionStatementContext(parser antlr.Parser, parent antlr.ParserRuleContext, invokingState int) *SelectionStatementContext {
+	var p = new(SelectionStatementContext)
+
+	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(parent, invokingState)
+
+	p.parser = parser
+	p.RuleIndex = CParserRULE_selectionStatement
+
+	return p
+}
+
+func (s *SelectionStatementContext) GetParser() antlr.Parser { return s.parser }
+
+func (s *SelectionStatementContext) If() antlr.TerminalNode {
+	return s.GetToken(CParserIf, 0)
+}
+
+func (s *SelectionStatementContext) LeftParen() antlr.TerminalNode {
+	return s.GetToken(CParserLeftParen, 0)
+}
+
+func (s *SelectionStatementContext) Expression() IExpressionContext {
+	var t = s.GetTypedRuleContext(reflect.TypeOf((*IExpressionContext)(nil)).Elem(), 0)
+
+	if t == nil {
+		return nil
+	}
+
+	return t.(IExpressionContext)
+}
+
+func (s *SelectionStatementContext) RightParen() antlr.TerminalNode {
+	return s.GetToken(CParserRightParen, 0)
+}
+
+func (s *SelectionStatementContext) AllStatement() []IStatementContext {
+	var ts = s.GetTypedRuleContexts(reflect.TypeOf((*IStatementContext)(nil)).Elem())
+	var tst = make([]IStatementContext, len(ts))
+
+	for i, t := range ts {
+		if t != nil {
+			tst[i] = t.(IStatementContext)
+		}
+	}
+
+	return tst
+}
+
+func (s *SelectionStatementContext) Statement(i int) IStatementContext {
+	var t = s.GetTypedRuleContext(reflect.TypeOf((*IStatementContext)(nil)).Elem(), i)
+
+	if t == nil {
+		return nil
+	}
+
+	return t.(IStatementContext)
+}
+
+func (s *SelectionStatementContext) Else() antlr.TerminalNode {
+	return s.GetToken(CParserElse, 0)
+}
+
+func (s *SelectionStatementContext) Switch() antlr.TerminalNode {
+	return s.GetToken(CParserSwitch, 0)
+}
+
+func (s *SelectionStatementContext) GetRuleContext() antlr.RuleContext {
+	return s
+}
+
+func (s *SelectionStatementContext) ToStringTree(ruleNames []string, recog antlr.Recognizer) string {
+	return antlr.TreesStringTree(s, ruleNames, recog)
+}
+
+func (s *SelectionStatementContext) EnterRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(CListener); ok {
+		listenerT.EnterSelectionStatement(s)
+	}
+}
+
+func (s *SelectionStatementContext) ExitRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(CListener); ok {
+		listenerT.ExitSelectionStatement(s)
+	}
+}
+
+func (p *CParser) SelectionStatement() (localctx ISelectionStatementContext) {
+	localctx = NewSelectionStatementContext(p, p.GetParserRuleContext(), p.GetState())
+	p.EnterRule(localctx, 152, CParserRULE_selectionStatement)
+
+	defer func() {
+		p.ExitRule()
+	}()
+
+	defer func() {
+		if err := recover(); err != nil {
+			if v, ok := err.(antlr.RecognitionException); ok {
+				localctx.SetException(v)
+				p.GetErrorHandler().ReportError(p, v)
+				p.GetErrorHandler().Recover(p, v)
+			} else {
+				panic(err)
+			}
+		}
+	}()
+
+	p.SetState(1179)
+	p.GetErrorHandler().Sync(p)
+
+	switch p.GetTokenStream().LA(1) {
+	case CParserIf:
+		p.EnterOuterAlt(localctx, 1)
+		{
+			p.SetState(1164)
+			p.Match(CParserIf)
+		}
+		{
+			p.SetState(1165)
+			p.Match(CParserLeftParen)
+		}
+		{
+			p.SetState(1166)
+			p.expression(0)
+		}
+		{
+			p.SetState(1167)
+			p.Match(CParserRightParen)
+		}
+		{
+			p.SetState(1168)
+			p.Statement()
+		}
+		p.SetState(1171)
+		p.GetErrorHandler().Sync(p)
+
+		if p.GetInterpreter().AdaptivePredict(p.GetTokenStream(), 123, p.GetParserRuleContext()) == 1 {
+			{
+				p.SetState(1169)
+				p.Match(CParserElse)
+			}
+			{
+				p.SetState(1170)
+				p.Statement()
+			}
+
+		}
+
+	case CParserSwitch:
+		p.EnterOuterAlt(localctx, 2)
+		{
+			p.SetState(1173)
+			p.Match(CParserSwitch)
+		}
+		{
+			p.SetState(1174)
+			p.Match(CParserLeftParen)
+		}
+		{
+			p.SetState(1175)
+			p.expression(0)
+		}
+		{
+			p.SetState(1176)
+			p.Match(CParserRightParen)
+		}
+		{
+			p.SetState(1177)
+			p.Statement()
+		}
+
+	default:
+		panic(antlr.NewNoViableAltException(p, nil, nil, nil, nil, nil))
+	}
+
+	return localctx
+}
+
+// IIterationStatementContext is an interface to support dynamic dispatch.
+type IIterationStatementContext interface {
+	antlr.ParserRuleContext
+
+	// GetParser returns the parser.
+	GetParser() antlr.Parser
+
+	// IsIterationStatementContext differentiates from other interfaces.
+	IsIterationStatementContext()
+}
+
+type IterationStatementContext struct {
+	*antlr.BaseParserRuleContext
+	parser antlr.Parser
+}
+
+func NewEmptyIterationStatementContext() *IterationStatementContext {
+	var p = new(IterationStatementContext)
+	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(nil, -1)
+	p.RuleIndex = CParserRULE_iterationStatement
+	return p
+}
+
+func (*IterationStatementContext) IsIterationStatementContext() {}
+
+func NewIterationStatementContext(parser antlr.Parser, parent antlr.ParserRuleContext, invokingState int) *IterationStatementContext {
+	var p = new(IterationStatementContext)
+
+	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(parent, invokingState)
+
+	p.parser = parser
+	p.RuleIndex = CParserRULE_iterationStatement
+
+	return p
+}
+
+func (s *IterationStatementContext) GetParser() antlr.Parser { return s.parser }
+
+func (s *IterationStatementContext) While() antlr.TerminalNode {
+	return s.GetToken(CParserWhile, 0)
+}
+
+func (s *IterationStatementContext) LeftParen() antlr.TerminalNode {
+	return s.GetToken(CParserLeftParen, 0)
+}
+
+func (s *IterationStatementContext) Expression() IExpressionContext {
+	var t = s.GetTypedRuleContext(reflect.TypeOf((*IExpressionContext)(nil)).Elem(), 0)
+
+	if t == nil {
+		return nil
+	}
+
+	return t.(IExpressionContext)
+}
+
+func (s *IterationStatementContext) RightParen() antlr.TerminalNode {
+	return s.GetToken(CParserRightParen, 0)
+}
+
+func (s *IterationStatementContext) Statement() IStatementContext {
+	var t = s.GetTypedRuleContext(reflect.TypeOf((*IStatementContext)(nil)).Elem(), 0)
+
+	if t == nil {
+		return nil
+	}
+
+	return t.(IStatementContext)
+}
+
+func (s *IterationStatementContext) Do() antlr.TerminalNode {
+	return s.GetToken(CParserDo, 0)
+}
+
+func (s *IterationStatementContext) Semi() antlr.TerminalNode {
+	return s.GetToken(CParserSemi, 0)
+}
+
+func (s *IterationStatementContext) For() antlr.TerminalNode {
+	return s.GetToken(CParserFor, 0)
+}
+
+func (s *IterationStatementContext) ForCondition() IForConditionContext {
+	var t = s.GetTypedRuleContext(reflect.TypeOf((*IForConditionContext)(nil)).Elem(), 0)
+
+	if t == nil {
+		return nil
+	}
+
+	return t.(IForConditionContext)
+}
+
+func (s *IterationStatementContext) GetRuleContext() antlr.RuleContext {
+	return s
+}
+
+func (s *IterationStatementContext) ToStringTree(ruleNames []string, recog antlr.Recognizer) string {
+	return antlr.TreesStringTree(s, ruleNames, recog)
+}
+
+func (s *IterationStatementContext) EnterRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(CListener); ok {
+		listenerT.EnterIterationStatement(s)
+	}
+}
+
+func (s *IterationStatementContext) ExitRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(CListener); ok {
+		listenerT.ExitIterationStatement(s)
+	}
+}
+
+func (p *CParser) IterationStatement() (localctx IIterationStatementContext) {
+	localctx = NewIterationStatementContext(p, p.GetParserRuleContext(), p.GetState())
+	p.EnterRule(localctx, 154, CParserRULE_iterationStatement)
+
+	defer func() {
+		p.ExitRule()
+	}()
+
+	defer func() {
+		if err := recover(); err != nil {
+			if v, ok := err.(antlr.RecognitionException); ok {
+				localctx.SetException(v)
+				p.GetErrorHandler().ReportError(p, v)
+				p.GetErrorHandler().Recover(p, v)
+			} else {
+				panic(err)
+			}
+		}
+	}()
+
+	p.SetState(1201)
+	p.GetErrorHandler().Sync(p)
+
+	switch p.GetTokenStream().LA(1) {
+	case CParserWhile:
+		p.EnterOuterAlt(localctx, 1)
+		{
+			p.SetState(1181)
+			p.Match(CParserWhile)
+		}
+		{
+			p.SetState(1182)
+			p.Match(CParserLeftParen)
+		}
+		{
+			p.SetState(1183)
+			p.expression(0)
+		}
+		{
+			p.SetState(1184)
+			p.Match(CParserRightParen)
+		}
+		{
+			p.SetState(1185)
+			p.Statement()
+		}
+
+	case CParserDo:
+		p.EnterOuterAlt(localctx, 2)
+		{
+			p.SetState(1187)
+			p.Match(CParserDo)
+		}
+		{
+			p.SetState(1188)
+			p.Statement()
+		}
+		{
+			p.SetState(1189)
+			p.Match(CParserWhile)
+		}
+		{
+			p.SetState(1190)
+			p.Match(CParserLeftParen)
+		}
+		{
+			p.SetState(1191)
+			p.expression(0)
+		}
+		{
+			p.SetState(1192)
+			p.Match(CParserRightParen)
+		}
+		{
+			p.SetState(1193)
+			p.Match(CParserSemi)
+		}
+
+	case CParserFor:
+		p.EnterOuterAlt(localctx, 3)
+		{
+			p.SetState(1195)
+			p.Match(CParserFor)
+		}
+		{
+			p.SetState(1196)
+			p.Match(CParserLeftParen)
+		}
+		{
+			p.SetState(1197)
+			p.ForCondition()
+		}
+		{
+			p.SetState(1198)
+			p.Match(CParserRightParen)
+		}
+		{
+			p.SetState(1199)
+			p.Statement()
+		}
+
+	default:
+		panic(antlr.NewNoViableAltException(p, nil, nil, nil, nil, nil))
+	}
+
+	return localctx
+}
+
+// IForConditionContext is an interface to support dynamic dispatch.
+type IForConditionContext interface {
+	antlr.ParserRuleContext
+
+	// GetParser returns the parser.
+	GetParser() antlr.Parser
+
+	// IsForConditionContext differentiates from other interfaces.
+	IsForConditionContext()
+}
+
+type ForConditionContext struct {
+	*antlr.BaseParserRuleContext
+	parser antlr.Parser
+}
+
+func NewEmptyForConditionContext() *ForConditionContext {
+	var p = new(ForConditionContext)
+	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(nil, -1)
+	p.RuleIndex = CParserRULE_forCondition
+	return p
+}
+
+func (*ForConditionContext) IsForConditionContext() {}
+
+func NewForConditionContext(parser antlr.Parser, parent antlr.ParserRuleContext, invokingState int) *ForConditionContext {
+	var p = new(ForConditionContext)
+
+	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(parent, invokingState)
+
+	p.parser = parser
+	p.RuleIndex = CParserRULE_forCondition
+
+	return p
+}
+
+func (s *ForConditionContext) GetParser() antlr.Parser { return s.parser }
+
+func (s *ForConditionContext) ForDeclaration() IForDeclarationContext {
+	var t = s.GetTypedRuleContext(reflect.TypeOf((*IForDeclarationContext)(nil)).Elem(), 0)
+
+	if t == nil {
+		return nil
+	}
+
+	return t.(IForDeclarationContext)
+}
+
+func (s *ForConditionContext) AllSemi() []antlr.TerminalNode {
+	return s.GetTokens(CParserSemi)
+}
+
+func (s *ForConditionContext) Semi(i int) antlr.TerminalNode {
+	return s.GetToken(CParserSemi, i)
+}
+
+func (s *ForConditionContext) AllForExpression() []IForExpressionContext {
+	var ts = s.GetTypedRuleContexts(reflect.TypeOf((*IForExpressionContext)(nil)).Elem())
+	var tst = make([]IForExpressionContext, len(ts))
+
+	for i, t := range ts {
+		if t != nil {
+			tst[i] = t.(IForExpressionContext)
+		}
+	}
+
+	return tst
+}
+
+func (s *ForConditionContext) ForExpression(i int) IForExpressionContext {
+	var t = s.GetTypedRuleContext(reflect.TypeOf((*IForExpressionContext)(nil)).Elem(), i)
+
+	if t == nil {
+		return nil
+	}
+
+	return t.(IForExpressionContext)
+}
+
+func (s *ForConditionContext) Expression() IExpressionContext {
+	var t = s.GetTypedRuleContext(reflect.TypeOf((*IExpressionContext)(nil)).Elem(), 0)
+
+	if t == nil {
+		return nil
+	}
+
+	return t.(IExpressionContext)
+}
+
+func (s *ForConditionContext) GetRuleContext() antlr.RuleContext {
+	return s
+}
+
+func (s *ForConditionContext) ToStringTree(ruleNames []string, recog antlr.Recognizer) string {
+	return antlr.TreesStringTree(s, ruleNames, recog)
+}
+
+func (s *ForConditionContext) EnterRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(CListener); ok {
+		listenerT.EnterForCondition(s)
+	}
+}
+
+func (s *ForConditionContext) ExitRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(CListener); ok {
+		listenerT.ExitForCondition(s)
+	}
+}
+
+func (p *CParser) ForCondition() (localctx IForConditionContext) {
+	localctx = NewForConditionContext(p, p.GetParserRuleContext(), p.GetState())
+	p.EnterRule(localctx, 156, CParserRULE_forCondition)
+	var _la int
+
+	defer func() {
+		p.ExitRule()
+	}()
+
+	defer func() {
+		if err := recover(); err != nil {
+			if v, ok := err.(antlr.RecognitionException); ok {
+				localctx.SetException(v)
+				p.GetErrorHandler().ReportError(p, v)
+				p.GetErrorHandler().Recover(p, v)
+			} else {
+				panic(err)
+			}
+		}
+	}()
+
+	p.SetState(1223)
+	p.GetErrorHandler().Sync(p)
+	switch p.GetInterpreter().AdaptivePredict(p.GetTokenStream(), 131, p.GetParserRuleContext()) {
+	case 1:
+		p.EnterOuterAlt(localctx, 1)
+		{
+			p.SetState(1203)
+			p.ForDeclaration()
+		}
+		{
+			p.SetState(1204)
+			p.Match(CParserSemi)
+		}
+		p.SetState(1206)
+		p.GetErrorHandler().Sync(p)
+		_la = p.GetTokenStream().LA(1)
+
+		if (((_la)&-(0x1f+1)) == 0 && ((1<<uint(_la))&((1<<CParserT__0)|(1<<CParserT__1)|(1<<CParserT__2))) != 0) || (((_la-39)&-(0x1f+1)) == 0 && ((1<<uint((_la-39)))&((1<<(CParserSizeof-39))|(1<<(CParserAlignof-39))|(1<<(CParserGeneric-39))|(1<<(CParserLeftParen-39)))) != 0) || (((_la-71)&-(0x1f+1)) == 0 && ((1<<uint((_la-71)))&((1<<(CParserPlus-71))|(1<<(CParserPlusPlus-71))|(1<<(CParserMinus-71))|(1<<(CParserMinusMinus-71))|(1<<(CParserStar-71))|(1<<(CParserAnd-71))|(1<<(CParserAndAnd-71))|(1<<(CParserNot-71))|(1<<(CParserTilde-71)))) != 0) || (((_la-105)&-(0x1f+1)) == 0 && ((1<<uint((_la-105)))&((1<<(CParserIdentifier-105))|(1<<(CParserConstant-105))|(1<<(CParserDigitSequence-105))|(1<<(CParserStringLiteral-105)))) != 0) {
+			{
+				p.SetState(1205)
+				p.forExpression(0)
+			}
+
+		}
+		{
+			p.SetState(1208)
+			p.Match(CParserSemi)
+		}
+		p.SetState(1210)
+		p.GetErrorHandler().Sync(p)
+		_la = p.GetTokenStream().LA(1)
+
+		if (((_la)&-(0x1f+1)) == 0 && ((1<<uint(_la))&((1<<CParserT__0)|(1<<CParserT__1)|(1<<CParserT__2))) != 0) || (((_la-39)&-(0x1f+1)) == 0 && ((1<<uint((_la-39)))&((1<<(CParserSizeof-39))|(1<<(CParserAlignof-39))|(1<<(CParserGeneric-39))|(1<<(CParserLeftParen-39)))) != 0) || (((_la-71)&-(0x1f+1)) == 0 && ((1<<uint((_la-71)))&((1<<(CParserPlus-71))|(1<<(CParserPlusPlus-71))|(1<<(CParserMinus-71))|(1<<(CParserMinusMinus-71))|(1<<(CParserStar-71))|(1<<(CParserAnd-71))|(1<<(CParserAndAnd-71))|(1<<(CParserNot-71))|(1<<(CParserTilde-71)))) != 0) || (((_la-105)&-(0x1f+1)) == 0 && ((1<<uint((_la-105)))&((1<<(CParserIdentifier-105))|(1<<(CParserConstant-105))|(1<<(CParserDigitSequence-105))|(1<<(CParserStringLiteral-105)))) != 0) {
+			{
+				p.SetState(1209)
+				p.forExpression(0)
+			}
+
+		}
+
+	case 2:
+		p.EnterOuterAlt(localctx, 2)
+		p.SetState(1213)
+		p.GetErrorHandler().Sync(p)
+		_la = p.GetTokenStream().LA(1)
+
+		if (((_la)&-(0x1f+1)) == 0 && ((1<<uint(_la))&((1<<CParserT__0)|(1<<CParserT__1)|(1<<CParserT__2))) != 0) || (((_la-39)&-(0x1f+1)) == 0 && ((1<<uint((_la-39)))&((1<<(CParserSizeof-39))|(1<<(CParserAlignof-39))|(1<<(CParserGeneric-39))|(1<<(CParserLeftParen-39)))) != 0) || (((_la-71)&-(0x1f+1)) == 0 && ((1<<uint((_la-71)))&((1<<(CParserPlus-71))|(1<<(CParserPlusPlus-71))|(1<<(CParserMinus-71))|(1<<(CParserMinusMinus-71))|(1<<(CParserStar-71))|(1<<(CParserAnd-71))|(1<<(CParserAndAnd-71))|(1<<(CParserNot-71))|(1<<(CParserTilde-71)))) != 0) || (((_la-105)&-(0x1f+1)) == 0 && ((1<<uint((_la-105)))&((1<<(CParserIdentifier-105))|(1<<(CParserConstant-105))|(1<<(CParserDigitSequence-105))|(1<<(CParserStringLiteral-105)))) != 0) {
+			{
+				p.SetState(1212)
+				p.expression(0)
+			}
+
+		}
+		{
+			p.SetState(1215)
+			p.Match(CParserSemi)
+		}
+		p.SetState(1217)
+		p.GetErrorHandler().Sync(p)
+		_la = p.GetTokenStream().LA(1)
+
+		if (((_la)&-(0x1f+1)) == 0 && ((1<<uint(_la))&((1<<CParserT__0)|(1<<CParserT__1)|(1<<CParserT__2))) != 0) || (((_la-39)&-(0x1f+1)) == 0 && ((1<<uint((_la-39)))&((1<<(CParserSizeof-39))|(1<<(CParserAlignof-39))|(1<<(CParserGeneric-39))|(1<<(CParserLeftParen-39)))) != 0) || (((_la-71)&-(0x1f+1)) == 0 && ((1<<uint((_la-71)))&((1<<(CParserPlus-71))|(1<<(CParserPlusPlus-71))|(1<<(CParserMinus-71))|(1<<(CParserMinusMinus-71))|(1<<(CParserStar-71))|(1<<(CParserAnd-71))|(1<<(CParserAndAnd-71))|(1<<(CParserNot-71))|(1<<(CParserTilde-71)))) != 0) || (((_la-105)&-(0x1f+1)) == 0 && ((1<<uint((_la-105)))&((1<<(CParserIdentifier-105))|(1<<(CParserConstant-105))|(1<<(CParserDigitSequence-105))|(1<<(CParserStringLiteral-105)))) != 0) {
+			{
+				p.SetState(1216)
+				p.forExpression(0)
+			}
+
+		}
+		{
+			p.SetState(1219)
+			p.Match(CParserSemi)
+		}
+		p.SetState(1221)
+		p.GetErrorHandler().Sync(p)
+		_la = p.GetTokenStream().LA(1)
+
+		if (((_la)&-(0x1f+1)) == 0 && ((1<<uint(_la))&((1<<CParserT__0)|(1<<CParserT__1)|(1<<CParserT__2))) != 0) || (((_la-39)&-(0x1f+1)) == 0 && ((1<<uint((_la-39)))&((1<<(CParserSizeof-39))|(1<<(CParserAlignof-39))|(1<<(CParserGeneric-39))|(1<<(CParserLeftParen-39)))) != 0) || (((_la-71)&-(0x1f+1)) == 0 && ((1<<uint((_la-71)))&((1<<(CParserPlus-71))|(1<<(CParserPlusPlus-71))|(1<<(CParserMinus-71))|(1<<(CParserMinusMinus-71))|(1<<(CParserStar-71))|(1<<(CParserAnd-71))|(1<<(CParserAndAnd-71))|(1<<(CParserNot-71))|(1<<(CParserTilde-71)))) != 0) || (((_la-105)&-(0x1f+1)) == 0 && ((1<<uint((_la-105)))&((1<<(CParserIdentifier-105))|(1<<(CParserConstant-105))|(1<<(CParserDigitSequence-105))|(1<<(CParserStringLiteral-105)))) != 0) {
+			{
+				p.SetState(1220)
+				p.forExpression(0)
+			}
+
+		}
+
+	}
+
+	return localctx
+}
+
+// IForDeclarationContext is an interface to support dynamic dispatch.
+type IForDeclarationContext interface {
+	antlr.ParserRuleContext
+
+	// GetParser returns the parser.
+	GetParser() antlr.Parser
+
+	// IsForDeclarationContext differentiates from other interfaces.
+	IsForDeclarationContext()
+}
+
+type ForDeclarationContext struct {
+	*antlr.BaseParserRuleContext
+	parser antlr.Parser
+}
+
+func NewEmptyForDeclarationContext() *ForDeclarationContext {
+	var p = new(ForDeclarationContext)
+	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(nil, -1)
+	p.RuleIndex = CParserRULE_forDeclaration
+	return p
+}
+
+func (*ForDeclarationContext) IsForDeclarationContext() {}
+
+func NewForDeclarationContext(parser antlr.Parser, parent antlr.ParserRuleContext, invokingState int) *ForDeclarationContext {
+	var p = new(ForDeclarationContext)
+
+	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(parent, invokingState)
+
+	p.parser = parser
+	p.RuleIndex = CParserRULE_forDeclaration
+
+	return p
+}
+
+func (s *ForDeclarationContext) GetParser() antlr.Parser { return s.parser }
+
+func (s *ForDeclarationContext) DeclarationSpecifiers() IDeclarationSpecifiersContext {
+	var t = s.GetTypedRuleContext(reflect.TypeOf((*IDeclarationSpecifiersContext)(nil)).Elem(), 0)
+
+	if t == nil {
+		return nil
+	}
+
+	return t.(IDeclarationSpecifiersContext)
+}
+
+func (s *ForDeclarationContext) InitDeclaratorList() IInitDeclaratorListContext {
+	var t = s.GetTypedRuleContext(reflect.TypeOf((*IInitDeclaratorListContext)(nil)).Elem(), 0)
+
+	if t == nil {
+		return nil
+	}
+
+	return t.(IInitDeclaratorListContext)
+}
+
+func (s *ForDeclarationContext) GetRuleContext() antlr.RuleContext {
+	return s
+}
+
+func (s *ForDeclarationContext) ToStringTree(ruleNames []string, recog antlr.Recognizer) string {
+	return antlr.TreesStringTree(s, ruleNames, recog)
+}
+
+func (s *ForDeclarationContext) EnterRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(CListener); ok {
+		listenerT.EnterForDeclaration(s)
+	}
+}
+
+func (s *ForDeclarationContext) ExitRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(CListener); ok {
+		listenerT.ExitForDeclaration(s)
+	}
+}
+
+func (p *CParser) ForDeclaration() (localctx IForDeclarationContext) {
+	localctx = NewForDeclarationContext(p, p.GetParserRuleContext(), p.GetState())
+	p.EnterRule(localctx, 158, CParserRULE_forDeclaration)
+
+	defer func() {
+		p.ExitRule()
+	}()
+
+	defer func() {
+		if err := recover(); err != nil {
+			if v, ok := err.(antlr.RecognitionException); ok {
+				localctx.SetException(v)
+				p.GetErrorHandler().ReportError(p, v)
+				p.GetErrorHandler().Recover(p, v)
+			} else {
+				panic(err)
+			}
+		}
+	}()
+
+	p.SetState(1229)
+	p.GetErrorHandler().Sync(p)
+	switch p.GetInterpreter().AdaptivePredict(p.GetTokenStream(), 132, p.GetParserRuleContext()) {
+	case 1:
+		p.EnterOuterAlt(localctx, 1)
+		{
+			p.SetState(1225)
+			p.DeclarationSpecifiers()
+		}
+		{
+			p.SetState(1226)
+			p.initDeclaratorList(0)
+		}
+
+	case 2:
+		p.EnterOuterAlt(localctx, 2)
+		{
+			p.SetState(1228)
+			p.DeclarationSpecifiers()
+		}
+
+	}
+
+	return localctx
+}
+
+// IForExpressionContext is an interface to support dynamic dispatch.
+type IForExpressionContext interface {
+	antlr.ParserRuleContext
+
+	// GetParser returns the parser.
+	GetParser() antlr.Parser
+
+	// IsForExpressionContext differentiates from other interfaces.
+	IsForExpressionContext()
+}
+
+type ForExpressionContext struct {
+	*antlr.BaseParserRuleContext
+	parser antlr.Parser
+}
+
+func NewEmptyForExpressionContext() *ForExpressionContext {
+	var p = new(ForExpressionContext)
+	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(nil, -1)
+	p.RuleIndex = CParserRULE_forExpression
+	return p
+}
+
+func (*ForExpressionContext) IsForExpressionContext() {}
+
+func NewForExpressionContext(parser antlr.Parser, parent antlr.ParserRuleContext, invokingState int) *ForExpressionContext {
+	var p = new(ForExpressionContext)
+
+	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(parent, invokingState)
+
+	p.parser = parser
+	p.RuleIndex = CParserRULE_forExpression
+
+	return p
+}
+
+func (s *ForExpressionContext) GetParser() antlr.Parser { return s.parser }
+
+func (s *ForExpressionContext) AssignmentExpression() IAssignmentExpressionContext {
+	var t = s.GetTypedRuleContext(reflect.TypeOf((*IAssignmentExpressionContext)(nil)).Elem(), 0)
+
+	if t == nil {
+		return nil
+	}
+
+	return t.(IAssignmentExpressionContext)
+}
+
+func (s *ForExpressionContext) ForExpression() IForExpressionContext {
+	var t = s.GetTypedRuleContext(reflect.TypeOf((*IForExpressionContext)(nil)).Elem(), 0)
+
+	if t == nil {
+		return nil
+	}
+
+	return t.(IForExpressionContext)
+}
+
+func (s *ForExpressionContext) Comma() antlr.TerminalNode {
+	return s.GetToken(CParserComma, 0)
+}
+
+func (s *ForExpressionContext) GetRuleContext() antlr.RuleContext {
+	return s
+}
+
+func (s *ForExpressionContext) ToStringTree(ruleNames []string, recog antlr.Recognizer) string {
+	return antlr.TreesStringTree(s, ruleNames, recog)
+}
+
+func (s *ForExpressionContext) EnterRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(CListener); ok {
+		listenerT.EnterForExpression(s)
+	}
+}
+
+func (s *ForExpressionContext) ExitRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(CListener); ok {
+		listenerT.ExitForExpression(s)
+	}
+}
+
+func (p *CParser) ForExpression() (localctx IForExpressionContext) {
+	return p.forExpression(0)
+}
+
+func (p *CParser) forExpression(_p int) (localctx IForExpressionContext) {
+	var _parentctx antlr.ParserRuleContext = p.GetParserRuleContext()
+	_parentState := p.GetState()
+	localctx = NewForExpressionContext(p, p.GetParserRuleContext(), _parentState)
+	var _prevctx IForExpressionContext = localctx
+	var _ antlr.ParserRuleContext = _prevctx // TODO: To prevent unused variable warning.
+	_startState := 160
+	p.EnterRecursionRule(localctx, 160, CParserRULE_forExpression, _p)
+
+	defer func() {
+		p.UnrollRecursionContexts(_parentctx)
+	}()
+
+	defer func() {
+		if err := recover(); err != nil {
+			if v, ok := err.(antlr.RecognitionException); ok {
+				localctx.SetException(v)
+				p.GetErrorHandler().ReportError(p, v)
+				p.GetErrorHandler().Recover(p, v)
+			} else {
+				panic(err)
+			}
+		}
+	}()
+
+	var _alt int
+
+	p.EnterOuterAlt(localctx, 1)
+	{
+		p.SetState(1232)
+		p.AssignmentExpression()
+	}
+
+	p.GetParserRuleContext().SetStop(p.GetTokenStream().LT(-1))
+	p.SetState(1239)
+	p.GetErrorHandler().Sync(p)
+	_alt = p.GetInterpreter().AdaptivePredict(p.GetTokenStream(), 133, p.GetParserRuleContext())
+
+	for _alt != 2 && _alt != antlr.ATNInvalidAltNumber {
+		if _alt == 1 {
+			if p.GetParseListeners() != nil {
+				p.TriggerExitRuleEvent()
+			}
+			_prevctx = localctx
+			localctx = NewForExpressionContext(p, _parentctx, _parentState)
+			p.PushNewRecursionContext(localctx, _startState, CParserRULE_forExpression)
+			p.SetState(1234)
+
+			if !(p.Precpred(p.GetParserRuleContext(), 1)) {
+				panic(antlr.NewFailedPredicateException(p, "p.Precpred(p.GetParserRuleContext(), 1)", ""))
+			}
+			{
+				p.SetState(1235)
+				p.Match(CParserComma)
+			}
+			{
+				p.SetState(1236)
+				p.AssignmentExpression()
+			}
+
+		}
+		p.SetState(1241)
+		p.GetErrorHandler().Sync(p)
+		_alt = p.GetInterpreter().AdaptivePredict(p.GetTokenStream(), 133, p.GetParserRuleContext())
+	}
+
+	return localctx
+}
+
+// IJumpStatementContext is an interface to support dynamic dispatch.
+type IJumpStatementContext interface {
+	antlr.ParserRuleContext
+
+	// GetParser returns the parser.
+	GetParser() antlr.Parser
+
+	// IsJumpStatementContext differentiates from other interfaces.
+	IsJumpStatementContext()
+}
+
+type JumpStatementContext struct {
+	*antlr.BaseParserRuleContext
+	parser antlr.Parser
+}
+
+func NewEmptyJumpStatementContext() *JumpStatementContext {
+	var p = new(JumpStatementContext)
+	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(nil, -1)
+	p.RuleIndex = CParserRULE_jumpStatement
+	return p
+}
+
+func (*JumpStatementContext) IsJumpStatementContext() {}
+
+func NewJumpStatementContext(parser antlr.Parser, parent antlr.ParserRuleContext, invokingState int) *JumpStatementContext {
+	var p = new(JumpStatementContext)
+
+	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(parent, invokingState)
+
+	p.parser = parser
+	p.RuleIndex = CParserRULE_jumpStatement
+
+	return p
+}
+
+func (s *JumpStatementContext) GetParser() antlr.Parser { return s.parser }
+
+func (s *JumpStatementContext) Goto() antlr.TerminalNode {
+	return s.GetToken(CParserGoto, 0)
+}
+
+func (s *JumpStatementContext) Identifier() antlr.TerminalNode {
+	return s.GetToken(CParserIdentifier, 0)
+}
+
+func (s *JumpStatementContext) Semi() antlr.TerminalNode {
+	return s.GetToken(CParserSemi, 0)
+}
+
+func (s *JumpStatementContext) Continue() antlr.TerminalNode {
+	return s.GetToken(CParserContinue, 0)
+}
+
+func (s *JumpStatementContext) Break() antlr.TerminalNode {
+	return s.GetToken(CParserBreak, 0)
+}
+
+func (s *JumpStatementContext) Return() antlr.TerminalNode {
+	return s.GetToken(CParserReturn, 0)
+}
+
+func (s *JumpStatementContext) Expression() IExpressionContext {
+	var t = s.GetTypedRuleContext(reflect.TypeOf((*IExpressionContext)(nil)).Elem(), 0)
+
+	if t == nil {
+		return nil
+	}
+
+	return t.(IExpressionContext)
+}
+
+func (s *JumpStatementContext) UnaryExpression() IUnaryExpressionContext {
+	var t = s.GetTypedRuleContext(reflect.TypeOf((*IUnaryExpressionContext)(nil)).Elem(), 0)
+
+	if t == nil {
+		return nil
+	}
+
+	return t.(IUnaryExpressionContext)
+}
+
+func (s *JumpStatementContext) GetRuleContext() antlr.RuleContext {
+	return s
+}
+
+func (s *JumpStatementContext) ToStringTree(ruleNames []string, recog antlr.Recognizer) string {
+	return antlr.TreesStringTree(s, ruleNames, recog)
+}
+
+func (s *JumpStatementContext) EnterRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(CListener); ok {
+		listenerT.EnterJumpStatement(s)
+	}
+}
+
+func (s *JumpStatementContext) ExitRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(CListener); ok {
+		listenerT.ExitJumpStatement(s)
+	}
+}
+
+func (p *CParser) JumpStatement() (localctx IJumpStatementContext) {
+	localctx = NewJumpStatementContext(p, p.GetParserRuleContext(), p.GetState())
+	p.EnterRule(localctx, 162, CParserRULE_jumpStatement)
+	var _la int
+
+	defer func() {
+		p.ExitRule()
+	}()
+
+	defer func() {
+		if err := recover(); err != nil {
+			if v, ok := err.(antlr.RecognitionException); ok {
+				localctx.SetException(v)
+				p.GetErrorHandler().ReportError(p, v)
+				p.GetErrorHandler().Recover(p, v)
+			} else {
+				panic(err)
+			}
+		}
+	}()
+
+	p.SetState(1258)
+	p.GetErrorHandler().Sync(p)
+	switch p.GetInterpreter().AdaptivePredict(p.GetTokenStream(), 135, p.GetParserRuleContext()) {
+	case 1:
+		p.EnterOuterAlt(localctx, 1)
+		{
+			p.SetState(1242)
+			p.Match(CParserGoto)
+		}
+		{
+			p.SetState(1243)
+			p.Match(CParserIdentifier)
+		}
+		{
+			p.SetState(1244)
+			p.Match(CParserSemi)
+		}
+
+	case 2:
+		p.EnterOuterAlt(localctx, 2)
+		{
+			p.SetState(1245)
+			p.Match(CParserContinue)
+		}
+		{
+			p.SetState(1246)
+			p.Match(CParserSemi)
+		}
+
+	case 3:
+		p.EnterOuterAlt(localctx, 3)
+		{
+			p.SetState(1247)
+			p.Match(CParserBreak)
+		}
+		{
+			p.SetState(1248)
+			p.Match(CParserSemi)
+		}
+
+	case 4:
+		p.EnterOuterAlt(localctx, 4)
+		{
+			p.SetState(1249)
+			p.Match(CParserReturn)
+		}
+		p.SetState(1251)
+		p.GetErrorHandler().Sync(p)
+		_la = p.GetTokenStream().LA(1)
+
+		if (((_la)&-(0x1f+1)) == 0 && ((1<<uint(_la))&((1<<CParserT__0)|(1<<CParserT__1)|(1<<CParserT__2))) != 0) || (((_la-39)&-(0x1f+1)) == 0 && ((1<<uint((_la-39)))&((1<<(CParserSizeof-39))|(1<<(CParserAlignof-39))|(1<<(CParserGeneric-39))|(1<<(CParserLeftParen-39)))) != 0) || (((_la-71)&-(0x1f+1)) == 0 && ((1<<uint((_la-71)))&((1<<(CParserPlus-71))|(1<<(CParserPlusPlus-71))|(1<<(CParserMinus-71))|(1<<(CParserMinusMinus-71))|(1<<(CParserStar-71))|(1<<(CParserAnd-71))|(1<<(CParserAndAnd-71))|(1<<(CParserNot-71))|(1<<(CParserTilde-71)))) != 0) || (((_la-105)&-(0x1f+1)) == 0 && ((1<<uint((_la-105)))&((1<<(CParserIdentifier-105))|(1<<(CParserConstant-105))|(1<<(CParserDigitSequence-105))|(1<<(CParserStringLiteral-105)))) != 0) {
+			{
+				p.SetState(1250)
+				p.expression(0)
+			}
+
+		}
+		{
+			p.SetState(1253)
+			p.Match(CParserSemi)
+		}
+
+	case 5:
+		p.EnterOuterAlt(localctx, 5)
+		{
+			p.SetState(1254)
+			p.Match(CParserGoto)
+		}
+		{
+			p.SetState(1255)
+			p.UnaryExpression()
+		}
+		{
+			p.SetState(1256)
+			p.Match(CParserSemi)
+		}
+
+	}
+
+	return localctx
+}
+
+// ICompilationUnitContext is an interface to support dynamic dispatch.
+type ICompilationUnitContext interface {
+	antlr.ParserRuleContext
+
+	// GetParser returns the parser.
+	GetParser() antlr.Parser
+
+	// IsCompilationUnitContext differentiates from other interfaces.
+	IsCompilationUnitContext()
+}
+
+type CompilationUnitContext struct {
+	*antlr.BaseParserRuleContext
+	parser antlr.Parser
+}
+
+func NewEmptyCompilationUnitContext() *CompilationUnitContext {
+	var p = new(CompilationUnitContext)
+	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(nil, -1)
+	p.RuleIndex = CParserRULE_compilationUnit
+	return p
+}
+
+func (*CompilationUnitContext) IsCompilationUnitContext() {}
+
+func NewCompilationUnitContext(parser antlr.Parser, parent antlr.ParserRuleContext, invokingState int) *CompilationUnitContext {
+	var p = new(CompilationUnitContext)
+
+	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(parent, invokingState)
+
+	p.parser = parser
+	p.RuleIndex = CParserRULE_compilationUnit
+
+	return p
+}
+
+func (s *CompilationUnitContext) GetParser() antlr.Parser { return s.parser }
+
+func (s *CompilationUnitContext) EOF() antlr.TerminalNode {
+	return s.GetToken(CParserEOF, 0)
+}
+
+func (s *CompilationUnitContext) TranslationUnit() ITranslationUnitContext {
+	var t = s.GetTypedRuleContext(reflect.TypeOf((*ITranslationUnitContext)(nil)).Elem(), 0)
+
+	if t == nil {
+		return nil
+	}
+
+	return t.(ITranslationUnitContext)
+}
+
+func (s *CompilationUnitContext) GetRuleContext() antlr.RuleContext {
+	return s
+}
+
+func (s *CompilationUnitContext) ToStringTree(ruleNames []string, recog antlr.Recognizer) string {
+	return antlr.TreesStringTree(s, ruleNames, recog)
+}
+
+func (s *CompilationUnitContext) EnterRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(CListener); ok {
+		listenerT.EnterCompilationUnit(s)
+	}
+}
+
+func (s *CompilationUnitContext) ExitRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(CListener); ok {
+		listenerT.ExitCompilationUnit(s)
+	}
+}
+
+func (p *CParser) CompilationUnit() (localctx ICompilationUnitContext) {
+	localctx = NewCompilationUnitContext(p, p.GetParserRuleContext(), p.GetState())
+	p.EnterRule(localctx, 164, CParserRULE_compilationUnit)
+	var _la int
+
+	defer func() {
+		p.ExitRule()
+	}()
+
+	defer func() {
+		if err := recover(); err != nil {
+			if v, ok := err.(antlr.RecognitionException); ok {
+				localctx.SetException(v)
+				p.GetErrorHandler().ReportError(p, v)
+				p.GetErrorHandler().Recover(p, v)
+			} else {
+				panic(err)
+			}
+		}
+	}()
+
+	p.EnterOuterAlt(localctx, 1)
+	p.SetState(1261)
+	p.GetErrorHandler().Sync(p)
+	_la = p.GetTokenStream().LA(1)
+
+	if (((_la)&-(0x1f+1)) == 0 && ((1<<uint(_la))&((1<<CParserT__0)|(1<<CParserT__3)|(1<<CParserT__4)|(1<<CParserT__5)|(1<<CParserT__6)|(1<<CParserT__7)|(1<<CParserT__8)|(1<<CParserT__9)|(1<<CParserT__11)|(1<<CParserAuto)|(1<<CParserChar)|(1<<CParserConst)|(1<<CParserDouble)|(1<<CParserEnum)|(1<<CParserExtern)|(1<<CParserFloat)|(1<<CParserInline))) != 0) || (((_la-32)&-(0x1f+1)) == 0 && ((1<<uint((_la-32)))&((1<<(CParserInt-32))|(1<<(CParserLong-32))|(1<<(CParserRegister-32))|(1<<(CParserRestrict-32))|(1<<(CParserShort-32))|(1<<(CParserSigned-32))|(1<<(CParserStatic-32))|(1<<(CParserStruct-32))|(1<<(CParserTypedef-32))|(1<<(CParserUnion-32))|(1<<(CParserUnsigned-32))|(1<<(CParserVoid-32))|(1<<(CParserVolatile-32))|(1<<(CParserAlignas-32))|(1<<(CParserAtomic-32))|(1<<(CParserBool-32))|(1<<(CParserComplex-32))|(1<<(CParserNoreturn-32))|(1<<(CParserStaticAssert-32))|(1<<(CParserThreadLocal-32))|(1<<(CParserLeftParen-32)))) != 0) || (((_la-75)&-(0x1f+1)) == 0 && ((1<<uint((_la-75)))&((1<<(CParserStar-75))|(1<<(CParserCaret-75))|(1<<(CParserSemi-75))|(1<<(CParserIdentifier-75)))) != 0) {
+		{
+			p.SetState(1260)
+			p.translationUnit(0)
+		}
+
+	}
+	{
+		p.SetState(1263)
+		p.Match(CParserEOF)
+	}
+
+	return localctx
+}
+
+// ITranslationUnitContext is an interface to support dynamic dispatch.
+type ITranslationUnitContext interface {
+	antlr.ParserRuleContext
+
+	// GetParser returns the parser.
+	GetParser() antlr.Parser
+
+	// IsTranslationUnitContext differentiates from other interfaces.
+	IsTranslationUnitContext()
+}
+
+type TranslationUnitContext struct {
+	*antlr.BaseParserRuleContext
+	parser antlr.Parser
+}
+
+func NewEmptyTranslationUnitContext() *TranslationUnitContext {
+	var p = new(TranslationUnitContext)
+	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(nil, -1)
+	p.RuleIndex = CParserRULE_translationUnit
+	return p
+}
+
+func (*TranslationUnitContext) IsTranslationUnitContext() {}
+
+func NewTranslationUnitContext(parser antlr.Parser, parent antlr.ParserRuleContext, invokingState int) *TranslationUnitContext {
+	var p = new(TranslationUnitContext)
+
+	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(parent, invokingState)
+
+	p.parser = parser
+	p.RuleIndex = CParserRULE_translationUnit
+
+	return p
+}
+
+func (s *TranslationUnitContext) GetParser() antlr.Parser { return s.parser }
+
+func (s *TranslationUnitContext) ExternalDeclaration() IExternalDeclarationContext {
+	var t = s.GetTypedRuleContext(reflect.TypeOf((*IExternalDeclarationContext)(nil)).Elem(), 0)
+
+	if t == nil {
+		return nil
+	}
+
+	return t.(IExternalDeclarationContext)
+}
+
+func (s *TranslationUnitContext) TranslationUnit() ITranslationUnitContext {
+	var t = s.GetTypedRuleContext(reflect.TypeOf((*ITranslationUnitContext)(nil)).Elem(), 0)
+
+	if t == nil {
+		return nil
+	}
+
+	return t.(ITranslationUnitContext)
+}
+
+func (s *TranslationUnitContext) GetRuleContext() antlr.RuleContext {
+	return s
+}
+
+func (s *TranslationUnitContext) ToStringTree(ruleNames []string, recog antlr.Recognizer) string {
+	return antlr.TreesStringTree(s, ruleNames, recog)
+}
+
+func (s *TranslationUnitContext) EnterRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(CListener); ok {
+		listenerT.EnterTranslationUnit(s)
+	}
+}
+
+func (s *TranslationUnitContext) ExitRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(CListener); ok {
+		listenerT.ExitTranslationUnit(s)
+	}
+}
+
+func (p *CParser) TranslationUnit() (localctx ITranslationUnitContext) {
+	return p.translationUnit(0)
+}
+
+func (p *CParser) translationUnit(_p int) (localctx ITranslationUnitContext) {
+	var _parentctx antlr.ParserRuleContext = p.GetParserRuleContext()
+	_parentState := p.GetState()
+	localctx = NewTranslationUnitContext(p, p.GetParserRuleContext(), _parentState)
+	var _prevctx ITranslationUnitContext = localctx
+	var _ antlr.ParserRuleContext = _prevctx // TODO: To prevent unused variable warning.
+	_startState := 166
+	p.EnterRecursionRule(localctx, 166, CParserRULE_translationUnit, _p)
+
+	defer func() {
+		p.UnrollRecursionContexts(_parentctx)
+	}()
+
+	defer func() {
+		if err := recover(); err != nil {
+			if v, ok := err.(antlr.RecognitionException); ok {
+				localctx.SetException(v)
+				p.GetErrorHandler().ReportError(p, v)
+				p.GetErrorHandler().Recover(p, v)
+			} else {
+				panic(err)
+			}
+		}
+	}()
+
+	var _alt int
+
+	p.EnterOuterAlt(localctx, 1)
+	{
+		p.SetState(1266)
+		p.ExternalDeclaration()
+	}
+
+	p.GetParserRuleContext().SetStop(p.GetTokenStream().LT(-1))
+	p.SetState(1272)
+	p.GetErrorHandler().Sync(p)
+	_alt = p.GetInterpreter().AdaptivePredict(p.GetTokenStream(), 137, p.GetParserRuleContext())
+
+	for _alt != 2 && _alt != antlr.ATNInvalidAltNumber {
+		if _alt == 1 {
+			if p.GetParseListeners() != nil {
+				p.TriggerExitRuleEvent()
+			}
+			_prevctx = localctx
+			localctx = NewTranslationUnitContext(p, _parentctx, _parentState)
+			p.PushNewRecursionContext(localctx, _startState, CParserRULE_translationUnit)
+			p.SetState(1268)
+
+			if !(p.Precpred(p.GetParserRuleContext(), 1)) {
+				panic(antlr.NewFailedPredicateException(p, "p.Precpred(p.GetParserRuleContext(), 1)", ""))
+			}
+			{
+				p.SetState(1269)
+				p.ExternalDeclaration()
+			}
+
+		}
+		p.SetState(1274)
+		p.GetErrorHandler().Sync(p)
+		_alt = p.GetInterpreter().AdaptivePredict(p.GetTokenStream(), 137, p.GetParserRuleContext())
+	}
+
+	return localctx
+}
+
+// IExternalDeclarationContext is an interface to support dynamic dispatch.
+type IExternalDeclarationContext interface {
+	antlr.ParserRuleContext
+
+	// GetParser returns the parser.
+	GetParser() antlr.Parser
+
+	// IsExternalDeclarationContext differentiates from other interfaces.
+	IsExternalDeclarationContext()
+}
+
+type ExternalDeclarationContext struct {
+	*antlr.BaseParserRuleContext
+	parser antlr.Parser
+}
+
+func NewEmptyExternalDeclarationContext() *ExternalDeclarationContext {
+	var p = new(ExternalDeclarationContext)
+	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(nil, -1)
+	p.RuleIndex = CParserRULE_externalDeclaration
+	return p
+}
+
+func (*ExternalDeclarationContext) IsExternalDeclarationContext() {}
+
+func NewExternalDeclarationContext(parser antlr.Parser, parent antlr.ParserRuleContext, invokingState int) *ExternalDeclarationContext {
+	var p = new(ExternalDeclarationContext)
+
+	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(parent, invokingState)
+
+	p.parser = parser
+	p.RuleIndex = CParserRULE_externalDeclaration
+
+	return p
+}
+
+func (s *ExternalDeclarationContext) GetParser() antlr.Parser { return s.parser }
+
+func (s *ExternalDeclarationContext) FunctionDefinition() IFunctionDefinitionContext {
+	var t = s.GetTypedRuleContext(reflect.TypeOf((*IFunctionDefinitionContext)(nil)).Elem(), 0)
+
+	if t == nil {
+		return nil
+	}
+
+	return t.(IFunctionDefinitionContext)
+}
+
+func (s *ExternalDeclarationContext) Declaration() IDeclarationContext {
+	var t = s.GetTypedRuleContext(reflect.TypeOf((*IDeclarationContext)(nil)).Elem(), 0)
+
+	if t == nil {
+		return nil
+	}
+
+	return t.(IDeclarationContext)
+}
+
+func (s *ExternalDeclarationContext) Semi() antlr.TerminalNode {
+	return s.GetToken(CParserSemi, 0)
+}
+
+func (s *ExternalDeclarationContext) GetRuleContext() antlr.RuleContext {
+	return s
+}
+
+func (s *ExternalDeclarationContext) ToStringTree(ruleNames []string, recog antlr.Recognizer) string {
+	return antlr.TreesStringTree(s, ruleNames, recog)
+}
+
+func (s *ExternalDeclarationContext) EnterRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(CListener); ok {
+		listenerT.EnterExternalDeclaration(s)
+	}
+}
+
+func (s *ExternalDeclarationContext) ExitRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(CListener); ok {
+		listenerT.ExitExternalDeclaration(s)
+	}
+}
+
+func (p *CParser) ExternalDeclaration() (localctx IExternalDeclarationContext) {
+	localctx = NewExternalDeclarationContext(p, p.GetParserRuleContext(), p.GetState())
+	p.EnterRule(localctx, 168, CParserRULE_externalDeclaration)
+
+	defer func() {
+		p.ExitRule()
+	}()
+
+	defer func() {
+		if err := recover(); err != nil {
+			if v, ok := err.(antlr.RecognitionException); ok {
+				localctx.SetException(v)
+				p.GetErrorHandler().ReportError(p, v)
+				p.GetErrorHandler().Recover(p, v)
+			} else {
+				panic(err)
+			}
+		}
+	}()
+
+	p.SetState(1278)
+	p.GetErrorHandler().Sync(p)
+	switch p.GetInterpreter().AdaptivePredict(p.GetTokenStream(), 138, p.GetParserRuleContext()) {
+	case 1:
+		p.EnterOuterAlt(localctx, 1)
+		{
+			p.SetState(1275)
+			p.FunctionDefinition()
+		}
+
+	case 2:
+		p.EnterOuterAlt(localctx, 2)
+		{
+			p.SetState(1276)
+			p.Declaration()
+		}
+
+	case 3:
+		p.EnterOuterAlt(localctx, 3)
+		{
+			p.SetState(1277)
+			p.Match(CParserSemi)
+		}
+
+	}
+
+	return localctx
+}
+
+// IFunctionDefinitionContext is an interface to support dynamic dispatch.
+type IFunctionDefinitionContext interface {
+	antlr.ParserRuleContext
+
+	// GetParser returns the parser.
+	GetParser() antlr.Parser
+
+	// IsFunctionDefinitionContext differentiates from other interfaces.
+	IsFunctionDefinitionContext()
+}
+
+type FunctionDefinitionContext struct {
+	*antlr.BaseParserRuleContext
+	parser antlr.Parser
+}
+
+func NewEmptyFunctionDefinitionContext() *FunctionDefinitionContext {
+	var p = new(FunctionDefinitionContext)
+	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(nil, -1)
+	p.RuleIndex = CParserRULE_functionDefinition
+	return p
+}
+
+func (*FunctionDefinitionContext) IsFunctionDefinitionContext() {}
+
+func NewFunctionDefinitionContext(parser antlr.Parser, parent antlr.ParserRuleContext, invokingState int) *FunctionDefinitionContext {
+	var p = new(FunctionDefinitionContext)
+
+	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(parent, invokingState)
+
+	p.parser = parser
+	p.RuleIndex = CParserRULE_functionDefinition
+
+	return p
+}
+
+func (s *FunctionDefinitionContext) GetParser() antlr.Parser { return s.parser }
+
+func (s *FunctionDefinitionContext) Declarator() IDeclaratorContext {
+	var t = s.GetTypedRuleContext(reflect.TypeOf((*IDeclaratorContext)(nil)).Elem(), 0)
+
+	if t == nil {
+		return nil
+	}
+
+	return t.(IDeclaratorContext)
+}
+
+func (s *FunctionDefinitionContext) CompoundStatement() ICompoundStatementContext {
+	var t = s.GetTypedRuleContext(reflect.TypeOf((*ICompoundStatementContext)(nil)).Elem(), 0)
+
+	if t == nil {
+		return nil
+	}
+
+	return t.(ICompoundStatementContext)
+}
+
+func (s *FunctionDefinitionContext) DeclarationSpecifiers() IDeclarationSpecifiersContext {
+	var t = s.GetTypedRuleContext(reflect.TypeOf((*IDeclarationSpecifiersContext)(nil)).Elem(), 0)
+
+	if t == nil {
+		return nil
+	}
+
+	return t.(IDeclarationSpecifiersContext)
+}
+
+func (s *FunctionDefinitionContext) DeclarationList() IDeclarationListContext {
+	var t = s.GetTypedRuleContext(reflect.TypeOf((*IDeclarationListContext)(nil)).Elem(), 0)
+
+	if t == nil {
+		return nil
+	}
+
+	return t.(IDeclarationListContext)
+}
+
+func (s *FunctionDefinitionContext) GetRuleContext() antlr.RuleContext {
+	return s
+}
+
+func (s *FunctionDefinitionContext) ToStringTree(ruleNames []string, recog antlr.Recognizer) string {
+	return antlr.TreesStringTree(s, ruleNames, recog)
+}
+
+func (s *FunctionDefinitionContext) EnterRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(CListener); ok {
+		listenerT.EnterFunctionDefinition(s)
+	}
+}
+
+func (s *FunctionDefinitionContext) ExitRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(CListener); ok {
+		listenerT.ExitFunctionDefinition(s)
+	}
+}
+
+func (p *CParser) FunctionDefinition() (localctx IFunctionDefinitionContext) {
+	localctx = NewFunctionDefinitionContext(p, p.GetParserRuleContext(), p.GetState())
+	p.EnterRule(localctx, 170, CParserRULE_functionDefinition)
+	var _la int
+
+	defer func() {
+		p.ExitRule()
+	}()
+
+	defer func() {
+		if err := recover(); err != nil {
+			if v, ok := err.(antlr.RecognitionException); ok {
+				localctx.SetException(v)
+				p.GetErrorHandler().ReportError(p, v)
+				p.GetErrorHandler().Recover(p, v)
+			} else {
+				panic(err)
+			}
+		}
+	}()
+
+	p.EnterOuterAlt(localctx, 1)
+	p.SetState(1281)
+	p.GetErrorHandler().Sync(p)
+
+	if p.GetInterpreter().AdaptivePredict(p.GetTokenStream(), 139, p.GetParserRuleContext()) == 1 {
+		{
+			p.SetState(1280)
+			p.DeclarationSpecifiers()
+		}
+
+	}
+	{
+		p.SetState(1283)
+		p.Declarator()
+	}
+	p.SetState(1285)
+	p.GetErrorHandler().Sync(p)
+	_la = p.GetTokenStream().LA(1)
+
+	if (((_la)&-(0x1f+1)) == 0 && ((1<<uint(_la))&((1<<CParserT__0)|(1<<CParserT__3)|(1<<CParserT__4)|(1<<CParserT__5)|(1<<CParserT__6)|(1<<CParserT__7)|(1<<CParserT__8)|(1<<CParserT__9)|(1<<CParserT__11)|(1<<CParserAuto)|(1<<CParserChar)|(1<<CParserConst)|(1<<CParserDouble)|(1<<CParserEnum)|(1<<CParserExtern)|(1<<CParserFloat)|(1<<CParserInline))) != 0) || (((_la-32)&-(0x1f+1)) == 0 && ((1<<uint((_la-32)))&((1<<(CParserInt-32))|(1<<(CParserLong-32))|(1<<(CParserRegister-32))|(1<<(CParserRestrict-32))|(1<<(CParserShort-32))|(1<<(CParserSigned-32))|(1<<(CParserStatic-32))|(1<<(CParserStruct-32))|(1<<(CParserTypedef-32))|(1<<(CParserUnion-32))|(1<<(CParserUnsigned-32))|(1<<(CParserVoid-32))|(1<<(CParserVolatile-32))|(1<<(CParserAlignas-32))|(1<<(CParserAtomic-32))|(1<<(CParserBool-32))|(1<<(CParserComplex-32))|(1<<(CParserNoreturn-32))|(1<<(CParserStaticAssert-32))|(1<<(CParserThreadLocal-32)))) != 0) || _la == CParserIdentifier {
+		{
+			p.SetState(1284)
+			p.declarationList(0)
+		}
+
+	}
+	{
+		p.SetState(1287)
+		p.CompoundStatement()
+	}
+
+	return localctx
+}
+
+// IDeclarationListContext is an interface to support dynamic dispatch.
+type IDeclarationListContext interface {
+	antlr.ParserRuleContext
+
+	// GetParser returns the parser.
+	GetParser() antlr.Parser
+
+	// IsDeclarationListContext differentiates from other interfaces.
+	IsDeclarationListContext()
+}
+
+type DeclarationListContext struct {
+	*antlr.BaseParserRuleContext
+	parser antlr.Parser
+}
+
+func NewEmptyDeclarationListContext() *DeclarationListContext {
+	var p = new(DeclarationListContext)
+	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(nil, -1)
+	p.RuleIndex = CParserRULE_declarationList
+	return p
+}
+
+func (*DeclarationListContext) IsDeclarationListContext() {}
+
+func NewDeclarationListContext(parser antlr.Parser, parent antlr.ParserRuleContext, invokingState int) *DeclarationListContext {
+	var p = new(DeclarationListContext)
+
+	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(parent, invokingState)
+
+	p.parser = parser
+	p.RuleIndex = CParserRULE_declarationList
+
+	return p
+}
+
+func (s *DeclarationListContext) GetParser() antlr.Parser { return s.parser }
+
+func (s *DeclarationListContext) Declaration() IDeclarationContext {
+	var t = s.GetTypedRuleContext(reflect.TypeOf((*IDeclarationContext)(nil)).Elem(), 0)
+
+	if t == nil {
+		return nil
+	}
+
+	return t.(IDeclarationContext)
+}
+
+func (s *DeclarationListContext) DeclarationList() IDeclarationListContext {
+	var t = s.GetTypedRuleContext(reflect.TypeOf((*IDeclarationListContext)(nil)).Elem(), 0)
+
+	if t == nil {
+		return nil
+	}
+
+	return t.(IDeclarationListContext)
+}
+
+func (s *DeclarationListContext) GetRuleContext() antlr.RuleContext {
+	return s
+}
+
+func (s *DeclarationListContext) ToStringTree(ruleNames []string, recog antlr.Recognizer) string {
+	return antlr.TreesStringTree(s, ruleNames, recog)
+}
+
+func (s *DeclarationListContext) EnterRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(CListener); ok {
+		listenerT.EnterDeclarationList(s)
+	}
+}
+
+func (s *DeclarationListContext) ExitRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(CListener); ok {
+		listenerT.ExitDeclarationList(s)
+	}
+}
+
+func (p *CParser) DeclarationList() (localctx IDeclarationListContext) {
+	return p.declarationList(0)
+}
+
+func (p *CParser) declarationList(_p int) (localctx IDeclarationListContext) {
+	var _parentctx antlr.ParserRuleContext = p.GetParserRuleContext()
+	_parentState := p.GetState()
+	localctx = NewDeclarationListContext(p, p.GetParserRuleContext(), _parentState)
+	var _prevctx IDeclarationListContext = localctx
+	var _ antlr.ParserRuleContext = _prevctx // TODO: To prevent unused variable warning.
+	_startState := 172
+	p.EnterRecursionRule(localctx, 172, CParserRULE_declarationList, _p)
+
+	defer func() {
+		p.UnrollRecursionContexts(_parentctx)
+	}()
+
+	defer func() {
+		if err := recover(); err != nil {
+			if v, ok := err.(antlr.RecognitionException); ok {
+				localctx.SetException(v)
+				p.GetErrorHandler().ReportError(p, v)
+				p.GetErrorHandler().Recover(p, v)
+			} else {
+				panic(err)
+			}
+		}
+	}()
+
+	var _alt int
+
+	p.EnterOuterAlt(localctx, 1)
+	{
+		p.SetState(1290)
+		p.Declaration()
+	}
+
+	p.GetParserRuleContext().SetStop(p.GetTokenStream().LT(-1))
+	p.SetState(1296)
+	p.GetErrorHandler().Sync(p)
+	_alt = p.GetInterpreter().AdaptivePredict(p.GetTokenStream(), 141, p.GetParserRuleContext())
+
+	for _alt != 2 && _alt != antlr.ATNInvalidAltNumber {
+		if _alt == 1 {
+			if p.GetParseListeners() != nil {
+				p.TriggerExitRuleEvent()
+			}
+			_prevctx = localctx
+			localctx = NewDeclarationListContext(p, _parentctx, _parentState)
+			p.PushNewRecursionContext(localctx, _startState, CParserRULE_declarationList)
+			p.SetState(1292)
+
+			if !(p.Precpred(p.GetParserRuleContext(), 1)) {
+				panic(antlr.NewFailedPredicateException(p, "p.Precpred(p.GetParserRuleContext(), 1)", ""))
+			}
+			{
+				p.SetState(1293)
+				p.Declaration()
+			}
+
+		}
+		p.SetState(1298)
+		p.GetErrorHandler().Sync(p)
+		_alt = p.GetInterpreter().AdaptivePredict(p.GetTokenStream(), 141, p.GetParserRuleContext())
+	}
+
+	return localctx
+}
+
+func (p *CParser) Sempred(localctx antlr.RuleContext, ruleIndex, predIndex int) bool {
+	switch ruleIndex {
+	case 2:
+		var t *GenericAssocListContext = nil
+		if localctx != nil {
+			t = localctx.(*GenericAssocListContext)
+		}
+		return p.GenericAssocList_Sempred(t, predIndex)
+
+	case 4:
+		var t *PostfixExpressionContext = nil
+		if localctx != nil {
+			t = localctx.(*PostfixExpressionContext)
+		}
+		return p.PostfixExpression_Sempred(t, predIndex)
+
+	case 5:
+		var t *ArgumentExpressionListContext = nil
+		if localctx != nil {
+			t = localctx.(*ArgumentExpressionListContext)
+		}
+		return p.ArgumentExpressionList_Sempred(t, predIndex)
+
+	case 9:
+		var t *MultiplicativeExpressionContext = nil
+		if localctx != nil {
+			t = localctx.(*MultiplicativeExpressionContext)
+		}
+		return p.MultiplicativeExpression_Sempred(t, predIndex)
+
+	case 10:
+		var t *AdditiveExpressionContext = nil
+		if localctx != nil {
+			t = localctx.(*AdditiveExpressionContext)
+		}
+		return p.AdditiveExpression_Sempred(t, predIndex)
+
+	case 11:
+		var t *ShiftExpressionContext = nil
+		if localctx != nil {
+			t = localctx.(*ShiftExpressionContext)
+		}
+		return p.ShiftExpression_Sempred(t, predIndex)
+
+	case 12:
+		var t *RelationalExpressionContext = nil
+		if localctx != nil {
+			t = localctx.(*RelationalExpressionContext)
+		}
+		return p.RelationalExpression_Sempred(t, predIndex)
+
+	case 13:
+		var t *EqualityExpressionContext = nil
+		if localctx != nil {
+			t = localctx.(*EqualityExpressionContext)
+		}
+		return p.EqualityExpression_Sempred(t, predIndex)
+
+	case 14:
+		var t *AndExpressionContext = nil
+		if localctx != nil {
+			t = localctx.(*AndExpressionContext)
+		}
+		return p.AndExpression_Sempred(t, predIndex)
+
+	case 15:
+		var t *ExclusiveOrExpressionContext = nil
+		if localctx != nil {
+			t = localctx.(*ExclusiveOrExpressionContext)
+		}
+		return p.ExclusiveOrExpression_Sempred(t, predIndex)
+
+	case 16:
+		var t *InclusiveOrExpressionContext = nil
+		if localctx != nil {
+			t = localctx.(*InclusiveOrExpressionContext)
+		}
+		return p.InclusiveOrExpression_Sempred(t, predIndex)
+
+	case 17:
+		var t *LogicalAndExpressionContext = nil
+		if localctx != nil {
+			t = localctx.(*LogicalAndExpressionContext)
+		}
+		return p.LogicalAndExpression_Sempred(t, predIndex)
+
+	case 18:
+		var t *LogicalOrExpressionContext = nil
+		if localctx != nil {
+			t = localctx.(*LogicalOrExpressionContext)
+		}
+		return p.LogicalOrExpression_Sempred(t, predIndex)
+
+	case 22:
+		var t *ExpressionContext = nil
+		if localctx != nil {
+			t = localctx.(*ExpressionContext)
+		}
+		return p.Expression_Sempred(t, predIndex)
+
+	case 28:
+		var t *InitDeclaratorListContext = nil
+		if localctx != nil {
+			t = localctx.(*InitDeclaratorListContext)
+		}
+		return p.InitDeclaratorList_Sempred(t, predIndex)
+
+	case 31:
+		var t *TypeSpecifierContext = nil
+		if localctx != nil {
+			t = localctx.(*TypeSpecifierContext)
+		}
+		return p.TypeSpecifier_Sempred(t, predIndex)
+
+	case 34:
+		var t *StructDeclarationListContext = nil
+		if localctx != nil {
+			t = localctx.(*StructDeclarationListContext)
+		}
+		return p.StructDeclarationList_Sempred(t, predIndex)
+
+	case 37:
+		var t *StructDeclaratorListContext = nil
+		if localctx != nil {
+			t = localctx.(*StructDeclaratorListContext)
+		}
+		return p.StructDeclaratorList_Sempred(t, predIndex)
+
+	case 40:
+		var t *EnumeratorListContext = nil
+		if localctx != nil {
+			t = localctx.(*EnumeratorListContext)
+		}
+		return p.EnumeratorList_Sempred(t, predIndex)
+
+	case 48:
+		var t *DirectDeclaratorContext = nil
+		if localctx != nil {
+			t = localctx.(*DirectDeclaratorContext)
+		}
+		return p.DirectDeclarator_Sempred(t, predIndex)
+
+	case 55:
+		var t *TypeQualifierListContext = nil
+		if localctx != nil {
+			t = localctx.(*TypeQualifierListContext)
+		}
+		return p.TypeQualifierList_Sempred(t, predIndex)
+
+	case 57:
+		var t *ParameterListContext = nil
+		if localctx != nil {
+			t = localctx.(*ParameterListContext)
+		}
+		return p.ParameterList_Sempred(t, predIndex)
+
+	case 59:
+		var t *IdentifierListContext = nil
+		if localctx != nil {
+			t = localctx.(*IdentifierListContext)
+		}
+		return p.IdentifierList_Sempred(t, predIndex)
+
+	case 62:
+		var t *DirectAbstractDeclaratorContext = nil
+		if localctx != nil {
+			t = localctx.(*DirectAbstractDeclaratorContext)
+		}
+		return p.DirectAbstractDeclarator_Sempred(t, predIndex)
+
+	case 65:
+		var t *InitializerListContext = nil
+		if localctx != nil {
+			t = localctx.(*InitializerListContext)
+		}
+		return p.InitializerList_Sempred(t, predIndex)
+
+	case 67:
+		var t *DesignatorListContext = nil
+		if localctx != nil {
+			t = localctx.(*DesignatorListContext)
+		}
+		return p.DesignatorList_Sempred(t, predIndex)
+
+	case 73:
+		var t *BlockItemListContext = nil
+		if localctx != nil {
+			t = localctx.(*BlockItemListContext)
+		}
+		return p.BlockItemList_Sempred(t, predIndex)
+
+	case 80:
+		var t *ForExpressionContext = nil
+		if localctx != nil {
+			t = localctx.(*ForExpressionContext)
+		}
+		return p.ForExpression_Sempred(t, predIndex)
+
+	case 83:
+		var t *TranslationUnitContext = nil
+		if localctx != nil {
+			t = localctx.(*TranslationUnitContext)
+		}
+		return p.TranslationUnit_Sempred(t, predIndex)
+
+	case 86:
+		var t *DeclarationListContext = nil
+		if localctx != nil {
+			t = localctx.(*DeclarationListContext)
+		}
+		return p.DeclarationList_Sempred(t, predIndex)
+
+	default:
+		panic("No predicate with index: " + fmt.Sprint(ruleIndex))
+	}
+}
+
+func (p *CParser) GenericAssocList_Sempred(localctx antlr.RuleContext, predIndex int) bool {
+	switch predIndex {
+	case 0:
+		return p.Precpred(p.GetParserRuleContext(), 1)
+
+	default:
+		panic("No predicate with index: " + fmt.Sprint(predIndex))
+	}
+}
+
+func (p *CParser) PostfixExpression_Sempred(localctx antlr.RuleContext, predIndex int) bool {
+	switch predIndex {
+	case 1:
+		return p.Precpred(p.GetParserRuleContext(), 10)
+
+	case 2:
+		return p.Precpred(p.GetParserRuleContext(), 9)
+
+	case 3:
+		return p.Precpred(p.GetParserRuleContext(), 8)
+
+	case 4:
+		return p.Precpred(p.GetParserRuleContext(), 7)
+
+	case 5:
+		return p.Precpred(p.GetParserRuleContext(), 6)
+
+	case 6:
+		return p.Precpred(p.GetParserRuleContext(), 5)
+
+	default:
+		panic("No predicate with index: " + fmt.Sprint(predIndex))
+	}
+}
+
+func (p *CParser) ArgumentExpressionList_Sempred(localctx antlr.RuleContext, predIndex int) bool {
+	switch predIndex {
+	case 7:
+		return p.Precpred(p.GetParserRuleContext(), 1)
+
+	default:
+		panic("No predicate with index: " + fmt.Sprint(predIndex))
+	}
+}
+
+func (p *CParser) MultiplicativeExpression_Sempred(localctx antlr.RuleContext, predIndex int) bool {
+	switch predIndex {
+	case 8:
+		return p.Precpred(p.GetParserRuleContext(), 3)
+
+	case 9:
+		return p.Precpred(p.GetParserRuleContext(), 2)
+
+	case 10:
+		return p.Precpred(p.GetParserRuleContext(), 1)
+
+	default:
+		panic("No predicate with index: " + fmt.Sprint(predIndex))
+	}
+}
+
+func (p *CParser) AdditiveExpression_Sempred(localctx antlr.RuleContext, predIndex int) bool {
+	switch predIndex {
+	case 11:
+		return p.Precpred(p.GetParserRuleContext(), 2)
+
+	case 12:
+		return p.Precpred(p.GetParserRuleContext(), 1)
+
+	default:
+		panic("No predicate with index: " + fmt.Sprint(predIndex))
+	}
+}
+
+func (p *CParser) ShiftExpression_Sempred(localctx antlr.RuleContext, predIndex int) bool {
+	switch predIndex {
+	case 13:
+		return p.Precpred(p.GetParserRuleContext(), 2)
+
+	case 14:
+		return p.Precpred(p.GetParserRuleContext(), 1)
+
+	default:
+		panic("No predicate with index: " + fmt.Sprint(predIndex))
+	}
+}
+
+func (p *CParser) RelationalExpression_Sempred(localctx antlr.RuleContext, predIndex int) bool {
+	switch predIndex {
+	case 15:
+		return p.Precpred(p.GetParserRuleContext(), 4)
+
+	case 16:
+		return p.Precpred(p.GetParserRuleContext(), 3)
+
+	case 17:
+		return p.Precpred(p.GetParserRuleContext(), 2)
+
+	case 18:
+		return p.Precpred(p.GetParserRuleContext(), 1)
+
+	default:
+		panic("No predicate with index: " + fmt.Sprint(predIndex))
+	}
+}
+
+func (p *CParser) EqualityExpression_Sempred(localctx antlr.RuleContext, predIndex int) bool {
+	switch predIndex {
+	case 19:
+		return p.Precpred(p.GetParserRuleContext(), 2)
+
+	case 20:
+		return p.Precpred(p.GetParserRuleContext(), 1)
+
+	default:
+		panic("No predicate with index: " + fmt.Sprint(predIndex))
+	}
+}
+
+func (p *CParser) AndExpression_Sempred(localctx antlr.RuleContext, predIndex int) bool {
+	switch predIndex {
+	case 21:
+		return p.Precpred(p.GetParserRuleContext(), 1)
+
+	default:
+		panic("No predicate with index: " + fmt.Sprint(predIndex))
+	}
+}
+
+func (p *CParser) ExclusiveOrExpression_Sempred(localctx antlr.RuleContext, predIndex int) bool {
+	switch predIndex {
+	case 22:
+		return p.Precpred(p.GetParserRuleContext(), 1)
+
+	default:
+		panic("No predicate with index: " + fmt.Sprint(predIndex))
+	}
+}
+
+func (p *CParser) InclusiveOrExpression_Sempred(localctx antlr.RuleContext, predIndex int) bool {
+	switch predIndex {
+	case 23:
+		return p.Precpred(p.GetParserRuleContext(), 1)
+
+	default:
+		panic("No predicate with index: " + fmt.Sprint(predIndex))
+	}
+}
+
+func (p *CParser) LogicalAndExpression_Sempred(localctx antlr.RuleContext, predIndex int) bool {
+	switch predIndex {
+	case 24:
+		return p.Precpred(p.GetParserRuleContext(), 1)
+
+	default:
+		panic("No predicate with index: " + fmt.Sprint(predIndex))
+	}
+}
+
+func (p *CParser) LogicalOrExpression_Sempred(localctx antlr.RuleContext, predIndex int) bool {
+	switch predIndex {
+	case 25:
+		return p.Precpred(p.GetParserRuleContext(), 1)
+
+	default:
+		panic("No predicate with index: " + fmt.Sprint(predIndex))
+	}
+}
+
+func (p *CParser) Expression_Sempred(localctx antlr.RuleContext, predIndex int) bool {
+	switch predIndex {
+	case 26:
+		return p.Precpred(p.GetParserRuleContext(), 1)
+
+	default:
+		panic("No predicate with index: " + fmt.Sprint(predIndex))
+	}
+}
+
+func (p *CParser) InitDeclaratorList_Sempred(localctx antlr.RuleContext, predIndex int) bool {
+	switch predIndex {
+	case 27:
+		return p.Precpred(p.GetParserRuleContext(), 1)
+
+	default:
+		panic("No predicate with index: " + fmt.Sprint(predIndex))
+	}
+}
+
+func (p *CParser) TypeSpecifier_Sempred(localctx antlr.RuleContext, predIndex int) bool {
+	switch predIndex {
+	case 28:
+		return p.Precpred(p.GetParserRuleContext(), 1)
+
+	default:
+		panic("No predicate with index: " + fmt.Sprint(predIndex))
+	}
+}
+
+func (p *CParser) StructDeclarationList_Sempred(localctx antlr.RuleContext, predIndex int) bool {
+	switch predIndex {
+	case 29:
+		return p.Precpred(p.GetParserRuleContext(), 1)
+
+	default:
+		panic("No predicate with index: " + fmt.Sprint(predIndex))
+	}
+}
+
+func (p *CParser) StructDeclaratorList_Sempred(localctx antlr.RuleContext, predIndex int) bool {
+	switch predIndex {
+	case 30:
+		return p.Precpred(p.GetParserRuleContext(), 1)
+
+	default:
+		panic("No predicate with index: " + fmt.Sprint(predIndex))
+	}
+}
+
+func (p *CParser) EnumeratorList_Sempred(localctx antlr.RuleContext, predIndex int) bool {
+	switch predIndex {
+	case 31:
+		return p.Precpred(p.GetParserRuleContext(), 1)
+
+	default:
+		panic("No predicate with index: " + fmt.Sprint(predIndex))
+	}
+}
+
+func (p *CParser) DirectDeclarator_Sempred(localctx antlr.RuleContext, predIndex int) bool {
+	switch predIndex {
+	case 32:
+		return p.Precpred(p.GetParserRuleContext(), 8)
+
+	case 33:
+		return p.Precpred(p.GetParserRuleContext(), 7)
+
+	case 34:
+		return p.Precpred(p.GetParserRuleContext(), 6)
+
+	case 35:
+		return p.Precpred(p.GetParserRuleContext(), 5)
+
+	case 36:
+		return p.Precpred(p.GetParserRuleContext(), 4)
+
+	case 37:
+		return p.Precpred(p.GetParserRuleContext(), 3)
+
+	default:
+		panic("No predicate with index: " + fmt.Sprint(predIndex))
+	}
+}
+
+func (p *CParser) TypeQualifierList_Sempred(localctx antlr.RuleContext, predIndex int) bool {
+	switch predIndex {
+	case 38:
+		return p.Precpred(p.GetParserRuleContext(), 1)
+
+	default:
+		panic("No predicate with index: " + fmt.Sprint(predIndex))
+	}
+}
+
+func (p *CParser) ParameterList_Sempred(localctx antlr.RuleContext, predIndex int) bool {
+	switch predIndex {
+	case 39:
+		return p.Precpred(p.GetParserRuleContext(), 1)
+
+	default:
+		panic("No predicate with index: " + fmt.Sprint(predIndex))
+	}
+}
+
+func (p *CParser) IdentifierList_Sempred(localctx antlr.RuleContext, predIndex int) bool {
+	switch predIndex {
+	case 40:
+		return p.Precpred(p.GetParserRuleContext(), 1)
+
+	default:
+		panic("No predicate with index: " + fmt.Sprint(predIndex))
+	}
+}
+
+func (p *CParser) DirectAbstractDeclarator_Sempred(localctx antlr.RuleContext, predIndex int) bool {
+	switch predIndex {
+	case 41:
+		return p.Precpred(p.GetParserRuleContext(), 5)
+
+	case 42:
+		return p.Precpred(p.GetParserRuleContext(), 4)
+
+	case 43:
+		return p.Precpred(p.GetParserRuleContext(), 3)
+
+	case 44:
+		return p.Precpred(p.GetParserRuleContext(), 2)
+
+	case 45:
+		return p.Precpred(p.GetParserRuleContext(), 1)
+
+	default:
+		panic("No predicate with index: " + fmt.Sprint(predIndex))
+	}
+}
+
+func (p *CParser) InitializerList_Sempred(localctx antlr.RuleContext, predIndex int) bool {
+	switch predIndex {
+	case 46:
+		return p.Precpred(p.GetParserRuleContext(), 1)
+
+	default:
+		panic("No predicate with index: " + fmt.Sprint(predIndex))
+	}
+}
+
+func (p *CParser) DesignatorList_Sempred(localctx antlr.RuleContext, predIndex int) bool {
+	switch predIndex {
+	case 47:
+		return p.Precpred(p.GetParserRuleContext(), 1)
+
+	default:
+		panic("No predicate with index: " + fmt.Sprint(predIndex))
+	}
+}
+
+func (p *CParser) BlockItemList_Sempred(localctx antlr.RuleContext, predIndex int) bool {
+	switch predIndex {
+	case 48:
+		return p.Precpred(p.GetParserRuleContext(), 1)
+
+	default:
+		panic("No predicate with index: " + fmt.Sprint(predIndex))
+	}
+}
+
+func (p *CParser) ForExpression_Sempred(localctx antlr.RuleContext, predIndex int) bool {
+	switch predIndex {
+	case 49:
+		return p.Precpred(p.GetParserRuleContext(), 1)
+
+	default:
+		panic("No predicate with index: " + fmt.Sprint(predIndex))
+	}
+}
+
+func (p *CParser) TranslationUnit_Sempred(localctx antlr.RuleContext, predIndex int) bool {
+	switch predIndex {
+	case 50:
+		return p.Precpred(p.GetParserRuleContext(), 1)
+
+	default:
+		panic("No predicate with index: " + fmt.Sprint(predIndex))
+	}
+}
+
+func (p *CParser) DeclarationList_Sempred(localctx antlr.RuleContext, predIndex int) bool {
+	switch predIndex {
+	case 51:
+		return p.Precpred(p.GetParserRuleContext(), 1)
+
+	default:
+		panic("No predicate with index: " + fmt.Sprint(predIndex))
+	}
+}
+cog)
 }
 
 func (s *BlockItemListContext) EnterRule(listener antlr.ParseTreeListener) {
