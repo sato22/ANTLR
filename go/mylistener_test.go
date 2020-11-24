@@ -9,9 +9,16 @@ import (
 func TestMyListener1(t *testing.T) {
 	is := antlr.NewInputStream(`
 	#include <stdio.h>
-	main() {
-	    printf("Hello world");
+  
+	void main()
+	{
+ 
+	  int a = 3;
+	  int b = 4;
+	 
+	  printf("a+b = %d\n",a+b);
 	}
+
 	`)
 	lexer := NewCLexer(is)
 	stream := antlr.NewCommonTokenStream(lexer, antlr.TokenDefaultChannel)
@@ -22,6 +29,7 @@ func TestMyListener1(t *testing.T) {
 	fmt.Println(tree.ToStringTree([]string{}, p))
 }
 
+/*
 func TestMyListener2(t *testing.T) {
 	is := antlr.NewInputStream(`
 	#include <stdio.h>
@@ -34,3 +42,8 @@ func TestMyListener2(t *testing.T) {
 	p := NewCParser(stream)
 	antlr.ParseTreeWalkerDefault.Walk(NewMyListener(), p.Declaration())
 }
+
+func TestMyListener3(t *testing.T) {
+	fmt.Println("TestMyListener3")
+}
+*/
