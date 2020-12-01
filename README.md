@@ -10,21 +10,21 @@
 ```
 
 ### コメント
-・型定義
+- 型定義
 
 (declarationSpecifiers (declarationSpecifier (typeSpecifier 型名)))
 
-・引数名？
+- 引数名？
 
 (declarator (directDeclarator 変数名))
 
-・変数定義
+- 変数定義
 
 (declarationSpecifiers (declarationSpecifier (typeSpecifier 型名)))
 
 (initDeclarationList (initDeclarator (declarator (directDeclarator 変数名))))
 
-・定義済みの変数を使用するとき？
+- 定義済みの変数を使用するとき？
 
 (unaryExpression (postfixExpression(primaryExpression 変数名)))
 
