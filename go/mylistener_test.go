@@ -8,15 +8,10 @@ import (
 
 func TestMyListener1(t *testing.T) {
 	is := antlr.NewInputStream(`
-	#include <stdio.h>
-  
-	void main()
-	{
- 
-	  int a = 3;
-	  int b = 4;
-	 
-	  printf("a+b = %d\n",a+b);
+	int summation(int a, int b) {
+         int sum;
+         sum = a+b;
+         return sum;
 	}
 
 	`)
@@ -25,7 +20,7 @@ func TestMyListener1(t *testing.T) {
 	p := NewCParser(stream)
 	listener := NewMyListener()
 	p.AddParseListener(listener)
-	tree := p.Declaration()
+	tree := p.CompilationUnit()
 	fmt.Println(tree.ToStringTree([]string{}, p))
 }
 
